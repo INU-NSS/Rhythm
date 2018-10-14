@@ -37,10 +37,8 @@
       <div class="w3-container w3-card-2 w3-gray w3-round-large w3-section w3-margin-right">
         <div class="w3-bar w3-padding-small">
           <a id="link_maps" href="/" class="w3-bar-item w3-border w3-hover-text-blue w3-round w3-padding-small fa fa-map-o w3-margin-right" style="text-decoration:none"> Maps</a>
-          <a id="link_devices" href="/devices" class="w3-bar-item w3-border w3-hover-text-blue w3-round w3-padding-small fa fa-signal w3-margin-right" style="text-decoration:none"> Devices</a>
-          <a id="link_sensors" href="/sensors" class="w3-bar-item w3-border w3-hover-text-blue w3-round w3-padding-small fa fa-thermometer-3 w3-margin-right" style="text-decoration:none"> Sensors</a>
           <a id="link_charts" href="/charts" class="w3-bar-item w3-border w3-hover-text-blue w3-round w3-padding-small fa fa-line-chart w3-margin-right" style="text-decoration:none"> Charts</a>
-          <a id="link_real" href="/realtime" class="w3-bar-item w3-border w3-hover-text-blue w3-round w3-padding-small fa fa-clock-o w3-margin-right" style="text-decoration:none"> Real-time</a>
+          <a id="link_real" href="/real-time" class="w3-bar-item w3-border w3-hover-text-blue w3-round w3-padding-small fa fa-clock-o w3-margin-right" style="text-decoration:none"> Realtime</a>
           <a id="link_comparison" href="/comparison" class="w3-bar-item w3-border w3-hover-text-blue w3-round w3-padding-small fa fa-line-chart w3-margin-right" style="text-decoration:none"> Comparison</a>
           <a href="/logout" class="w3-bar-item w3-hover-text-white w3-text-light-gray w3-round w3-padding-small fa w3-right" style="text-decoration:none">Log Out</a>
         </div>
@@ -60,20 +58,15 @@
             <%- include ./contents/charts %>
           <% } else if (content == 'comparison') { %>
             <%- include ./contents/comparison %>
-          <% } %>
+					<% } else if (content == 'real-time') { %>
+						<% include ./contents/real-time %>
+					<% } %>
         <% } %>
       </div>
     <footer class="margin-a">
       <%- include ./footer %>
     </footer>
     <script>
-    document.getElementById('link_<%= content %>').classList.add('w3-text-blue');
-
-    <% if (typeof msg != 'undefined' && msg != '') { %>
-      alertMessage('<%= msg %>');
-    <% } else if (typeof errmsg != 'undefined' && errmsg != '') { %>
-      alertMessage('<%= errmsg %>', 'error');
-    <% } %>
 
     function alertMessage(msg, type) {
       var message = document.getElementById('message');

@@ -59,6 +59,7 @@
           </div>
 <script>
 	const socket = io();
+	socket.emit('req', 'update');
 	socket.on('pi', (data) => {
 		document.getElementById('pi_time').innerHTML = new Date(data.time);
 		document.getElementById('pi_power').innerHTML = data.solar.toFixed(2);

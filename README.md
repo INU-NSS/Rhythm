@@ -5,6 +5,14 @@
 
 > 화면 구성 및 동작 방식에 대한 세밀한 정의가 필요함.
 
+## 2018.10.15 UPDATE
+
+- charts, real-time 구현
+- 그래프 색상(알파) 적용
+- charts 타이틀 추가
+- 페이지 열 때 데이터 바로 요청 및 적용
+- 그래프 크기 변경
+
 ## Directory Structure
 ```
 webserver/

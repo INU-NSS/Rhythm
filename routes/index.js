@@ -29,10 +29,11 @@ function route(app) {
 	app.use('/devices', require('./devices'));
 	app.use('/sensors', require('./sensors'));
 	app.use('/charts', require('./charts'));
+	app.use('/real-time', require('./real-time'));
 	app.use('/comparison', require('./comparison'));
-
-	app.get('/realtime', passport.checkAuthenticate, function(req, res) {
-		res.render('realtime');
+	
+	app.get('/realtime', passport.checkAuthenticate, handler.updateOption, function (req, rest) {
+		res.redirect('/');
 	});
 
 	app.get('/login', function(req, res) {
