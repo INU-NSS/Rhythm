@@ -1,6 +1,7 @@
+var passport = require('../lib/passport');
 const router = require('express').Router();
 
-router.get('/', (req, res) => {
+router.get('/', passport.checkAuthenticate, (req, res) => {
 	res.render('index', {
 		content: 'comparison',
 	});

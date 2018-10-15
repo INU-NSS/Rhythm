@@ -1,5 +1,7 @@
 function getToday() {
-	return new Date(new Date().toISOString().slice(0, 10));
+	var date = new Date(new Date().toISOString().slice(0, 10));
+	date = new Date(date.valueOf() + date.getTimezoneOffset() * 60000);
+	return date;
 }
 
 function getTomorrow() {
