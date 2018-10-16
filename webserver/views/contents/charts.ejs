@@ -1,0 +1,33 @@
+<div class="w3-container w3-card-2 w3-light-gray w3-round-large w3-section w3-padding w3-margin-right">
+	<div style='display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center'>
+		<div class="w3-panel" style='width:640px; margin-left: 10px; margin-right: 20px; margin-bottom: 40px'>
+			<canvas id='canvas_solar'></canvas>
+		</div>
+		<div class="w3-panel" style='width:640px; margin-left: 20px; margin-right: 20px; margin-bottom: 40px'>
+			<canvas id='canvas_energy'></canvas>
+		</div>
+	</div>
+</div>
+	<script src='/assets/js/Chart.min.js'></script>
+	<script src='/assets/js/utils.js'></script>
+	<script src='/assets/js/charts.js'></script>
+	<script>
+		const socket = io();
+		socket.emit('req', 'charts');
+		socket.on('charts', (x) => {
+			solar = x.solar;	
+			window.figure1.data.labels = solar[0].labels;
+			for(let i=0; i<solar.length; i++) {
+				window.figure1.data.datasets[i].data = solar[i].data;
+			}
+			window.figure1.update();
+
+			energy = x.energy;	
+			window.figure2.data.labels = energy[0].labels;
+			for(let i=0; i<energy.length; i++) {
+				window.figure2.data.datasets[i].data = energy[i].data;
+			}
+			window.figure2.update();
+		});
+
+	</script>	
