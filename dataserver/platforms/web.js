@@ -7,7 +7,6 @@ const rest = {
 
 function getData() {
 	return new Promise((resolve, reject) => {
-		//Promise.all([rest.solarx.update(), rest.cloud.update(), rest.solary.update()])
 		Promise.all([rest.cloud.update(1), rest.cloud.update(0), rest.solarx.update()])
 		.then((x) => {
 			resolve(calcSolRa(x));
