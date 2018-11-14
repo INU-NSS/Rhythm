@@ -26,7 +26,7 @@
     - comparison 표 value 1시간 평균 값으로 변경 
     - comparison , chart 전부 00~09시의 업데이트 미발생 문제 해결 
     - comparison chart 구현 완료 (3일간 pi ,web, lora의 값 비교) 
-    - config.js 생성 (서버 port, mqtt port, socket port)
+    - config.js 생성 (서버 port, mqtt port, socket port, mongodb [host, port name], API KEY)
 
 - To Do
     - 경사 일사량 값  -> 수평일사량 값 변경 모델 확인 
