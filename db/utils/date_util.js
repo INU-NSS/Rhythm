@@ -7,9 +7,9 @@ if(0<=hh && hh<9) {
     let date = new Date();
     date.setDate(date.getDate()+1);
     var d2= new Date(date.toISOString().slice(0, 10));
-    var d3 = new Date(d2.valueOf() +d2.getTimezoneOffset() * 60000);   
+    //var d3 = new Date(d2.valueOf() +d2.getTimezoneOffset() * 60000);   
     //console.log(d3);
-    return new Date(d2.valueOf() +d2.getTimezoneOffset() * 60000)
+    return new Date(d2.valueOf() +d2.getTimezoneOffset() * 60000);
     };
 
     const tomorrow = () => {
