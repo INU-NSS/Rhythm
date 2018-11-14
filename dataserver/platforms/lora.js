@@ -1,4 +1,7 @@
-const mqtt = require('mqtt').connect('mqtt://192.168.0.7');
+const config = require('../../config/config.js');
+const {mqtt:{host}} =config;
+const connectString = `mqtt://${host}`;
+const mqtt = require('mqtt').connect(connectString);
 const Parser = require('binary-parser').Parser;
 
 mqtt.on('connect', () => {
@@ -14,8 +17,9 @@ function getData() {
 				.uint8('code')
 				.floatbe('value');
 			x.solar = z.parse(y.slice(0, 5)).value;
+			x.sh = (x.solar*0.84).toFixed(0);
 			x.temp = z.parse(y.slice(5, 10)).value;
-			x.energy = z.parse(y.slice(0,5)).value*0.75 /1000;
+			x.energy = z.parse(y.slice(0,5)).value*0.75*8*4*0.16*0.9 /1000;
 			resolve(x);
 			
 			

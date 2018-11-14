@@ -4,12 +4,22 @@ const rest = {
 	solarx: require('../REST/solar.js'),
 	solary: require('../REST/kasi.js')
 };
-
+var date = new Date();
+var hh = new Date().getHours();
+//console.log(hh);
+//if( hh >7 || hh <20) {
+//if(hh >7 && hh <20){
 function getData() {
 	return new Promise((resolve, reject) => {
 		Promise.all([rest.cloud.update(1), rest.cloud.update(0), rest.solarx.update()])
 		.then((x) => {
+			//console.log(x);
 			resolve(calcSolRa(x));
+		})
+		.catch((x) => {
+			reject(err());
+			console.log(err);
+			console.log(x);
 		});
 	});
 }
@@ -26,9 +36,9 @@ function calcSolRa(data) {
 		if(data[0][i].category == 'VVV') w[3] = data[0][i].fcstValue;
 		if(data[0][i].category == 'UUU') w[4] = data[0][i].fcstValue;
 	}
-	w.push(Math.round(Math.sqrt(Math.pow(w[3], 2) + Math.pow(w[4], 2))));
+	w[5] = (Math.round(Math.sqrt(Math.pow(w[3], 2) + Math.pow(w[4], 2))));
 	for(let i=0; i<data[1].length; i++) {
-		if(data[1][i].category == 'T3H') w.push(data[1][i].fcstValue);
+		if(data[1][i].category == 'T3H') w[6] = (data[1][i].fcstValue);
 	}
 	var idx = rest.solarx.getAltitudeIndex();
 	var a = rest.solarx.deg2rad((Object.values(data[2])[idx +1]));
@@ -43,7 +53,17 @@ function calcSolRa(data) {
 	var temp = 0;
 	for(let i=0; i<c.length; i++) temp += c[i] * iv[i];
 	var solar = 1367 * Math.sin(a) * temp + b;
-	return { solar: solar, energy: solar *0.75 /1000};
+
+	return { solar: solar, energy: solar *0.75*8*4*0.16*0.9  /1000};
 }
 
+
+function err(){
+	var solar = 0;
+
+	return { solar: solar, energy: solar *0 }
+}
+module.exports.err =  err;
 module.exports.getData = getData;
+
+//}

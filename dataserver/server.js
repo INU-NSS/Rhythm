@@ -1,5 +1,12 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://192.168.0.7/test', { useNewUrlParser: true });
+const config = require('../config/config.js');
+const {db:{host, port, name}} = config;
+const connectString = `mongodb://${host}/${name}`;
+mongoose.connect(connectString, { useNewUrlParser: true });
+var date = [new Date().toLocaleString(), ''].join('').slice(0, 10);
+var hh = new Date().getHours();
+//console.log(hh);
+var x = [date, 'T', hh, ':00:00'].join('');
 
 var collection  = {
 	pi: require('../db/collections/pi.js'),
@@ -14,11 +21,20 @@ var platform = {
 };
 
 async function update() {
-	collection.pi.insert(await platform.pi.getData());
-	collection.lora.insert(await platform.lora.getData());
-	collection.web.insert(await platform.web.getData());
+	if( 7<hh && hh<20 ) {
+		collection.pi.insert(await platform.pi.getData());
+		collection.lora.insert(await platform.lora.getData());
+		collection.web.insert(await platform.web.getData());
 
-	setTimeout(update, 10*1000);
+		setTimeout(update, 10*1000);
+	}
+	else {
+		collection.pi.insert(await platform.pi.getData());
+		collection.lora.insert(await platform.lora.getData());
+		collection.web.insert(await platform.web.err());
+	
+		setTimeout(update, 10*1000);
+	}
 }
 
 update();

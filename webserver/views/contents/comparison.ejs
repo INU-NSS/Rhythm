@@ -5,28 +5,30 @@
           <div class="w3-panel">
             <table id="table_nodes1" class="w3-table w3-border w3-bordered w3-white w3-small">
               <tr>
-				<th>Time</th>
-                  <th>경사일사량(Wh/m²)</th>
-		            <th>Energy(kWh)</th>
+				        <th>Time</th>
+                <th>경사일사량(KWh/m²)</th>
+                <th>수평일사량(kwh/m²)</th>
+		            <th>발전량(kWh)</th>
               </tr>
               <tr>
                 <td id='lora_time'> - </td>
                 <td id='lora_solar'> - </td>
-		<td id='lora_energy'> - </td>
+                <td id='lora_sh'>
+		            <td id='lora_energy'> - </td>
               </tr>
             </table>
           </div>
         </div>
         <div class="w3-container w3-card-2 w3-light-gray w3-round-large w3-section w3-padding w3-margin-right">
           <div class="w3-panel">
-            <label class="w3-label w3-text-black" style="font-weight:bold;font-size:16px;">Solar Radiation</label>
+            <label class="w3-label w3-text-black" style="font-weight:bold;font-size:16px;">WEB DATA</label>
           </div>
           <div class="w3-panel">
             <table id="table_nodes2" class="w3-table w3-border w3-bordered w3-white w3-small">
               <tr>
 							<th> Time </th>
-							<th> Solar(Wh/m²) </th>
-							<th> Energy(kWh) </th>
+							<th> 일사량(KWh/m²) </th>
+							<th> 발전량(kWh) </th>
               </tr>
               <tr>
                 <td id='web_time'> - </td>
@@ -44,9 +46,9 @@
               <table id="table_nodes3" class="w3-table w3-border w3-bordered w3-white w3-small">
                 <tr>
 					<th> Time </th>
-					<th> Energy(kWh) </th>
-					 <th>경사일사량(Wh/m²)</th>
-					 <th>수평일사량(Wh/m²)</th>
+					<th> 발전량(kWh) </th>
+					 <th>경사일사량(KWh/m²)</th>
+					 <th>수평일사량(KWh/m²)</th>
                   </tr>
                 <tr>
                   <td id='pi_time'> - </td>
@@ -61,20 +63,22 @@
 	const socket = io();
 	socket.emit('req', 'comparison');
 	socket.on('comparison', (data) => {
-		pi = data.pi[0];
-		document.getElementById('pi_time').innerHTML = new Date(pi.time);
-		document.getElementById('pi_power').innerHTML = pi.energy.toFixed(2);
-		document.getElementById('pi_sv').innerHTML = pi.sv.toFixed(2);
-		document.getElementById('pi_sh').innerHTML = pi.sh.toFixed(2);
+    console.log(data);
+    pi = data.pi;
+    document.getElementById('pi_time').innerHTML =new Date(pi.time);
+		document.getElementById('pi_power').innerHTML = pi.energy;
+		document.getElementById('pi_sv').innerHTML = pi.solar;
+		document.getElementById('pi_sh').innerHTML = pi.sh;
 
-		web = data.web[0];
+		web = data.web;
 		document.getElementById('web_time').innerHTML = new Date(web.time);
-		document.getElementById('web_solar').innerHTML = web.solar.toFixed(2);
-		document.getElementById('web_energy').innerHTML = web.energy.toFixed(2);
+		document.getElementById('web_solar').innerHTML = web.solar;
+		document.getElementById('web_energy').innerHTML = web.energy;
 
-		lora = data.lora[0];
-		document.getElementById('lora_time').innerHTML = new Date(lora.time);
-		document.getElementById('lora_solar').innerHTML = lora.solar;
-		document.getElementById('lora_energy').innerHTML = lora.energy.toFixed(6);
+		lora = data.lora;
+		 document.getElementById('lora_time').innerHTML = new Date(lora.time);
+     document.getElementById('lora_solar').innerHTML = lora.solar;
+     document.getElementById('lora_sh').innerHTML = lora.sh;
+		 document.getElementById('lora_energy').innerHTML = lora.energy;
 	});
 </script>

@@ -1,0 +1,61 @@
+<div class="w3-container w3-card-2 w3-light-gray w3-round-large w3-section w3-padding w3-margin-right">
+    <div class="w3-container w3-card-2 w3-green w3-round-large w3-section w3-margin-right">
+		<div class="w3-bar w3-padding-small">
+			<a id="link_x" href="/x" class="w3-bar-item w3-border w3-hover-text-blue w3-round w3-padding-small fa fa-line-chart w3-margin-right" style="text-decoration:none"> 2018-10-24</a>
+            <a id="link_y" href="/y" class="w3-bar-item w3-border w3-hover-text-blue w3-round w3-padding-small fa fa-line-chart w3-margin-right" style="text-decoration:none"> 2018-10-26</a>
+            <a id="link_y" href="/z" class="w3-bar-item w3-border w3-hover-text-blue w3-round w3-padding-small fa fa-line-chart w3-margin-right" style="text-decoration:none"> 2018-10-27</a>
+		</div>
+	 </div>
+	<div id="message" class="w3-container w3-card-4 w3-round w3-margin-right" style="display:none;">
+		<h style="text-shadow: 2px 2px black;"></h>
+		<a class="w3-text-light-gray w3-hover-text-white w3-round w3-right w3-padding-small fa fa-close" style="text-shadow:2px 2px black;cursor:pointer" onclick="this.parentNode.style.display='none'"></a>
+	</div>
+	<div style='display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center'>
+		<div class="w3-panel" style='width:640px; margin-left: 10px; margin-right: 20px; margin-bottom: 40px'>
+			<canvas id='canvas'></canvas>
+		</div>
+	</div>
+</div>
+	<script src='/assets/js/Chart.min.js'></script>
+	<script src='/assets/js/utils.js'></script>
+
+	<script> 
+		var color = Chart.helpers.color;
+		var data = <%- data %>;
+		
+		var config = {
+			type: 'line',
+			data: {
+				labels: data.time,
+				datasets: [{
+					label: 'pi',
+					backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+					borderColor: window.chartColors.red,
+					data: data.ir.pi,
+				}, {
+					label: 'lora',
+					backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
+					borderColor: window.chartColors.blue,
+					data: data.ir.lora,
+				}, {
+					label: 'kma',
+					backgroundColor: color(window.chartColors.purple).alpha(0.5).rgbString(),
+					borderColor: window.chartColors.purple,
+					data: data.ir.kma,
+				}],
+				options: {
+					responsive: true,
+					tooltips: {
+						mode: 'index',
+						intersect: false,
+					},
+				},
+			},
+		};
+
+		var ctx = document.getElementById('canvas').getContext('2d');
+		window.plot = new Chart(ctx, config);
+		window.plot.options.title.text = data.date + 'Solar Irradiation [kWh/m²]';
+		window.plot.options.title.display = true;
+		window.plot.update();
+	</script>

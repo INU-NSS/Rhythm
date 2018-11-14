@@ -17,23 +17,39 @@
  **/
 
 const request = require('request');
-
+var hh = new Date().getHours();
+if(hh >7 && hh <20){
 function update(isCurrent) {
 	var date = new Date().getToday();	// 날짜 포맷을 변경 (yyyyMMdd)
 	var time = new Date().getBaseTime();	// 발표일자 계산 및 포맷 변경 (hh00)
-
-	if(isCurrent == false) time = (time == 2) ? 23 : time - 3;
+	
+	//if(isCurrent == false) time = (time == 2) ? 23 : time - 3;
+	if(isCurrent == false) time = (time == 8) ? 5 : time - 3;
 	time = [(time>9 ? '':'0') + time, '00'].join('');
 	
+	var hh = new Date().getHours();
+	//console.log(hh);
+	if(hh >6 && hh <20) {
 	const key = '%2BvfGC7aR%2BjJVlb5gBCfDySyyPzMg2yh9kGFMJZItbGJqwPe2H%2B%2BZCiItqIg8ENiOxA%2FYJPrdtfM52JrSXJzVKg%3D%3D';
 	var query = `http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData?ServiceKey=${key}&base_date=${date}&base_time=${time}&nx=60&ny=127&_type=json`;
+	//var query = `http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData?ServiceKey=${key}&base_date=20181029&base_time=2300&nx=60&ny=127&_type=json`;
 
 	return new Promise((resolve, reject) => {
 		request(query, (err, res, body) => {
+			if(err) reject(err); 
+			try{
 			var data = JSON.parse(body);
+			//console.log(data.response.body.items.item);
 			resolve(data.response.body.items.item);
+			}catch(err){
+				//var data = JSON.parse(body);
+				console.log(err);
+				console.log(data);
+				reject('error', err);
+			}
 		});
 	});
+    }
 }
 
 Date.prototype.getToday = function() {
@@ -44,11 +60,18 @@ Date.prototype.getToday = function() {
 };
 
 Date.prototype.getBaseTime = function() {
-	const base_time = [2, 5, 8, 11, 14, 17, 20, 23];	// 1일 8회
+	//const base_time = [2, 5, 8, 11, 14, 17, 20, 23];	// 1일 8회 //
+	//var hh = this.getHours();
+	//var idx = Math.floor((hh+1) / 3) - 1;
+	//if(idx < 0) idx = 7;
+	//return base_time[idx];
+	const base_time = [5, 8, 11, 14, 17, 20, 23];	// 1일 7회 //
 	var hh = this.getHours();
-	var idx = Math.floor((hh+1) / 3) - 1;
-	if(idx < 0) idx = 7;
+	var idx = Math.floor((hh+1) / 3) - 2;
+	if(idx < 0) idx = 6;
 	return base_time[idx];
 };
 
 module.exports.update = update;
+
+}

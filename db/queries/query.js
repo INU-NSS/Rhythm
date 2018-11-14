@@ -36,8 +36,10 @@ const toDataSet = (data, field) => {
 	var temp = [];
 	data.forEach((a) => {
 		let idx = getTimeIndex(a.time);
+		//console.log(a.time);
 		if(temp[idx] === undefined) temp[idx] = [];
 		temp[idx].push(a[field]);
+		
 	}); 
 	for(let i=0; i<temp.length; i++) if(temp[i] === undefined) temp[i] = [0];
 
@@ -45,6 +47,7 @@ const toDataSet = (data, field) => {
 	const x = y.map((a, idx) => {
 		let hh = Math.floor((idx *10) /60);
 		let mm = (idx *10) %60;
+		//console.log(hh);
 		return [(hh>9) ? '':'0', hh, ':', (mm>9) ? '':'0', mm].join('');
 	});
 

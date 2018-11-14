@@ -45,7 +45,7 @@ window.onload = function() {
 	window.figure2 = new Chart(ctx, createConfig('energy'));
 
 	window.figure1.options.title.display = true;
-	window.figure1.options.title.text = 'Solar Radiation';
+	window.figure1.options.title.text = 'Solar irradiation[kWh/m2] (h=10min)';
 	window.figure2.options.title.display = true;
-	window.figure2.options.title.text = 'Energy';
+	window.figure2.options.title.text = 'Power Generation[kWh] (h=10min)';
 };

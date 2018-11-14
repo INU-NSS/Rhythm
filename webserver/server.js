@@ -21,8 +21,8 @@ app.use(passport.session());
 const routes = require('./routes')(app, passport);
 
 const options = {
-	key: fs.readFileSync('./webserver/keys/webKey.pem'),
-	cert: fs.readFileSync('./webserver/keys/webCert.pem')
+	key: fs.readFileSync('./webserver/keys/private.pem'),
+	cert: fs.readFileSync('./webserver/keys/public.pem')
 };
 
 const init = (port) => {
@@ -35,3 +35,7 @@ module.exports = (port) => {
 		ioManager.run(server);
 	});
 };
+
+// process.on(' uncaughtException', function (err){
+// 	console.log(err);
+// });

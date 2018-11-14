@@ -1,7 +1,10 @@
+const config = require('../../config/config.js');
 const net = require('net');
+const { socket: {host}} = config;
+const connetString = `${host}`;
 const socket = new net.Socket();
 
-socket.connect(1553, 'nms.iptime.org');
+socket.connect(config.socket.port, connetString);
 socket.on('connect', () => {
 	var data = new Uint8Array([0, 0, 0, 0, 0, 6, 1, 3, 0, 0, 0, 27]);
 	socket.write(Buffer.from(data.buffer));

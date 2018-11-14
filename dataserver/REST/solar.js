@@ -1,5 +1,7 @@
 const request = require('request');
-
+var hh = new Date().getHours();
+//console.log(hh);
+if( hh >7 && hh <20) {
 function update(callback) {
 	var date = new Date().getToday();
 	date = '20180927';
@@ -11,8 +13,15 @@ function update(callback) {
 		request(query, (err, res, body) => {
 			if(err) reject('error', err);
 
-			var data = JSON.parse(body);
+			try {
+			const data = JSON.parse(body);
+			//console.log(body);
 			resolve(data.response.body.items.item);
+			}catch(err){
+				console.log(err);
+				console.log(body);
+				reject('error', err);
+			}
 		});
 	});
 }
@@ -42,3 +51,4 @@ module.exports = {
 	getAltitudeIndex: getAltitudeIndex,
 	deg2rad: deg2rad
 };
+}

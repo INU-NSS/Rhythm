@@ -3,8 +3,7 @@ const {pi, web, lora} = query.collections;
 
 async function update(io) {
 	const solar = await Promise.all([
-		query.findDay(pi
-			, 'sv'),
+		query.findDay(pi, 'sv'),
 		query.findDay(web, 'solar'),
 		query.findDay(lora, 'solar')
 	]);
