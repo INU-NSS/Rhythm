@@ -15,7 +15,8 @@
  *	4. 타이머 주기 변경(현재 5초)
  *	5. 기관 키 변경, 시스템 유형 변경
  **/
-
+const config = require('../../config/config.js');
+const { key : { solarkey, cloudkey}}=config;
 const request = require('request');
 var hh = new Date().getHours();
 if(hh >7 && hh <20){
@@ -30,8 +31,8 @@ function update(isCurrent) {
 	var hh = new Date().getHours();
 	//console.log(hh);
 	if(hh >6 && hh <20) {
-	const key = '%2BvfGC7aR%2BjJVlb5gBCfDySyyPzMg2yh9kGFMJZItbGJqwPe2H%2B%2BZCiItqIg8ENiOxA%2FYJPrdtfM52JrSXJzVKg%3D%3D';
-	var query = `http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData?ServiceKey=${key}&base_date=${date}&base_time=${time}&nx=60&ny=127&_type=json`;
+	//const key = '%2BvfGC7aR%2BjJVlb5gBCfDySyyPzMg2yh9kGFMJZItbGJqwPe2H%2B%2BZCiItqIg8ENiOxA%2FYJPrdtfM52JrSXJzVKg%3D%3D';
+	var query = `http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData?ServiceKey=${cloudkey}&base_date=${date}&base_time=${time}&nx=60&ny=127&_type=json`;
 	//var query = `http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData?ServiceKey=${key}&base_date=20181029&base_time=2300&nx=60&ny=127&_type=json`;
 
 	return new Promise((resolve, reject) => {
