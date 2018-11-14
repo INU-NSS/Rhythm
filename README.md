@@ -19,6 +19,22 @@
 
 ---
 
+##### 2018.11.14 UPDATE
+
+- Done
+    - pi, web, lora 차트 구현 (24시간) -Timezone 문제 해결
+    - comparison 차트 value 1시간 평균 값으로 변경 
+    - comparison , chart 전부 00~09시의 업데이트 미발생 문제 해결 
+    - comparison chart 구현 완료 (3일간 pi ,web, lora의 값 비교) 
+    - config.js 생성 (서버 port, mqtt port, socket port)
+
+- To Do
+    - 경사 일사량 값  -> 수평일사량 값 변경 모델 확인 
+    - 디버그 및 예외처리
+    - timezone에서 year문제 해결 ( 1년 넘기는 부분 코딩) 
+
+---
+
 #### System Structure
 이 응용 프로그램은 크게 **웹서버**, **데이터서버** 및 **데이터베이스**로 구성되어있다. 데이터 서버는 다양한 플랫폼으로부터 실시간 일사량을 측정하거나 추정하여 데이터베이스에 저장하고, 웹서버는 이 정보를 그래프 또는 테이블로 제공한다.
 
