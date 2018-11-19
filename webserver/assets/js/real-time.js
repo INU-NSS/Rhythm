@@ -5,7 +5,7 @@ var config = {
 	data: {
 		labels: [],
 		datasets: [{
-			label: 'Solar irradiance [W/m²]',
+			label: 'LoRa Solar irradiance [W/m²]',
 			backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
 			borderColor: window.chartColors.red,
 			data: [],

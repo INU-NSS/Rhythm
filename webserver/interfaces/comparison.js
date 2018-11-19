@@ -28,29 +28,44 @@ const lorasRa = () => {
 		else {
 			var x = [date, 'T', hh, ':00:00'].join('');	
 		}
+		//if(hh<20 && hh>=08){
 		lora.find().where('time').gte(x).exec((err, data) => {
 			var tmp = 0;
 			var idx = 0;
-			var pex = 0;
+			//var pex = 0;
 			//console.log(data);
 			for(var i=0; i<data.length; i++) {
 			tmp += data[i].solar;
 			idx += data[i].energy;
-			pex += data[i].sh;
+			//pex += data[i].sh;
 			}
 			tmp /= (data.length*1000);
-			pex /= (data.length*1000);
+			//pex /= (data.length*1000);
 			idx /= data.length;
 			resolve({
 				
 				time: x,
 				solar: tmp.toFixed(3),
-				sh: pex.toFixed(3),
+				//sh: pex.toFixed(3),
 				energy: idx.toFixed(2),
 				
 		})
 		});
-	//}
+		//}
+		// else {
+		// 	web.find().where('time').gte(x).exec((err, data) => {
+		// 		var t=0;
+		// 		var z=0;
+		// 		var p=0;
+		// 	resolve({
+		// 	time: x,
+		// 	solar: t,
+		// 	sh: p,
+		// 	energy: z,
+		// })
+		// 	});
+
+		// }
 	});
 };
 
@@ -130,7 +145,7 @@ const PiRa = () => {
 		else {
 			var x = [date, 'T', hh, ':00:00'].join('');	
 		}
-		// if(hh >= 20 || hh <= 07){
+		// if(hh >20 && hh <= 08){
 		// 	web.find().where('time').gte(x).exec((err, data) => {
 		// 		var t=0;
 		// 		var z=0;
@@ -143,7 +158,7 @@ const PiRa = () => {
 		// })
 		// 	});
 		// }
-		//else if(hh<20 || hh>=08){
+		//if(hh<20 && hh>=08){
 		pi.find().where('time').gte(x).exec((err, data) => {
 			//console.log(x);
 			//console.log(data);
@@ -167,6 +182,19 @@ const PiRa = () => {
 		})
 		});
 	//}
+	// else {
+	// 	web.find().where('time').gte(x).exec((err, data) => {
+	// 				var t=0;
+	// 				var z=0;
+	// 				var p=0;
+	// 			resolve({
+	// 			time: x,
+	// 			solar: t,
+	// 			sh: p,
+	// 			energy: z,
+	// 		})
+	// 			});
+	// }
 	});
 };
 

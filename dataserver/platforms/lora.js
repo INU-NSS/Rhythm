@@ -17,7 +17,7 @@ function getData() {
 				.uint8('code')
 				.floatbe('value');
 			x.solar = z.parse(y.slice(0, 5)).value;
-			x.sh = (x.solar*0.84).toFixed(0);
+			//x.sh = (x.solar*0.84).toFixed(0);
 			x.temp = z.parse(y.slice(5, 10)).value;
 			x.energy = z.parse(y.slice(0,5)).value*0.75*8*4*0.16*0.9 /1000;
 			resolve(x);

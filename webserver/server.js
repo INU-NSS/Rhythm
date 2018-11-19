@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
-const https = require('https');
+const http = require('http');
 const fs = require('fs');
 const ioManager = require('./interfaces/manager');
 
@@ -30,12 +30,16 @@ const init = (port) => {
 };
 
 module.exports = (port) => {
-	const server = https.createServer(options, app).listen(port, () => {
+	const server = http.createServer(options, app).listen(port, () => {
 		init(port);
 		ioManager.run(server);
 	});
 };
 
-// process.on(' uncaughtException', function (err){
-// 	console.log(err);
-// });
+process.on(' uncaughtException', function (err){
+	console.log(err);
+});
+
+setTimeout(() => {
+	console.log('This will still run.');
+  }, 500);

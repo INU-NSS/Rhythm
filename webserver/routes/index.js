@@ -1,8 +1,23 @@
-const User = require('../../db/collections/user');
-
+//const User = require('../../db/collections/user');
+const config = require ('../../config/config.js');
 const checkAuth = (req, res, next) => {
 	return req.isAuthenticated() ? next() : res.redirect('/login');
 };
+
+// const configPassport = (passport) => {
+// 	const strategy = require('passport-local').Strategy;
+// 	passport.use(new strategy({
+// 		usernameField: 'id',
+// 		passwordField: 'passwd',
+// 		session: true
+// 	}, (id, pw, done) => {
+// 		User.isValid(id, pw).then((user) => {
+// 			return user ? done(null, user) : done(null, false, { message: 'Invalid User' });
+// 		});
+// 	}));
+// 	passport.serializeUser((user, done) => done(null, user.id));
+// 	passport.deserializeUser((id, done) => done(null, id));
+// };
 
 const configPassport = (passport) => {
 	const strategy = require('passport-local').Strategy;
@@ -10,11 +25,15 @@ const configPassport = (passport) => {
 		usernameField: 'id',
 		passwordField: 'passwd',
 		session: true
-	}, (id, pw, done) => {
-		User.isValid(id, pw).then((user) => {
-			return user ? done(null, user) : done(null, false, { message: 'Invalid User' });
-		});
-	}));
+	}, function(id, passwd, done){
+		if(id == config.user.id && passwd ==config.user.pw){
+			var user = { id: config.user.id};
+			return done(null, user);
+		}else {
+			return(null, false, {message: ' Invalid user '});
+		}
+	}
+	));
 	passport.serializeUser((user, done) => done(null, user.id));
 	passport.deserializeUser((id, done) => done(null, id));
 };

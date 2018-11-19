@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
+const config = require('../../config/config.js');
+const {db: {host, port, name} } =config;
+const connetString = `mongodb://${host}/${name}`;
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://192.168.0.7/test', { useNewUrlParser: true });
+mongoose.connect(connetString, { useNewUrlParser: true });
 const {today, tomorrow} = require('../utils/date_util');
 const collections = {
 	pi: require('../collections/pi'),

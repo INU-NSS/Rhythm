@@ -11,7 +11,7 @@ socket.on('connect', () => {
 });
 
 socket.on('close', () => {
-	socket.connect(1553, 'nms.iptime.org');
+	socket.connect(config.socket.port, connetString);
 });
 
 function getData() {

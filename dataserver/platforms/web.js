@@ -17,7 +17,7 @@ function getData() {
 			resolve(calcSolRa(x));
 		})
 		.catch((x) => {
-			reject(err());
+			reject(err(x));
 			console.log(err);
 			console.log(x);
 		});
@@ -58,7 +58,7 @@ function calcSolRa(data) {
 }
 
 
-function err(){
+function err(data){
 	var solar = 0;
 
 	return { solar: solar, energy: solar *0 }
@@ -66,4 +66,4 @@ function err(){
 module.exports.err =  err;
 module.exports.getData = getData;
 
-//}
+
