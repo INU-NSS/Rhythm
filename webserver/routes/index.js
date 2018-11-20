@@ -30,7 +30,7 @@ const configPassport = (passport) => {
 			var user = { id: config.user.id};
 			return done(null, user);
 		}else {
-			return(null, false, {message: ' Invalid user '});
+			return done(null, false, {message: ' Invalid user '});
 		}
 	}
 	));
