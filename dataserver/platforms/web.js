@@ -6,9 +6,9 @@ const rest = {
 };
 var date = new Date();
 var hh = new Date().getHours();
-//console.log(hh);
-//if( hh >7 || hh <20) {
-//if(hh >7 && hh <20){
+console.log(hh);
+//if( 7<hh  || hh <15) {
+if(hh >7 && hh <19){
 function getData() {
 	return new Promise((resolve, reject) => {
 		Promise.all([rest.cloud.update(1), rest.cloud.update(0), rest.solarx.update()])
@@ -18,11 +18,14 @@ function getData() {
 		})
 		.catch((x) => {
 			reject(err(x));
+			console.log(hh);
 			console.log(err);
 			console.log(x);
 		});
 	});
 }
+//}
+
 
 function calcSolRa(data) {
 	// extract useful variables
@@ -54,11 +57,11 @@ function calcSolRa(data) {
 	for(let i=0; i<c.length; i++) temp += c[i] * iv[i];
 	var solar = 1367 * Math.sin(a) * temp + b;
 
-	return { solar: solar, energy: solar *0.75*8*4*0.16*0.9  /1000};
+	return { solar: solar, energy: solar *0.75*8*0.16 /1000};
 }
 
-
-function err(data){
+}
+function err(){
 	var solar = 0;
 
 	return { solar: solar, energy: solar *0 }

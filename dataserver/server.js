@@ -21,20 +21,20 @@ var platform = {
 };
 
 async function update() {
-	if( 8<=hh && hh<20 ) {
+	if( 8<=hh && hh<20) {
 		collection.pi.insert(await platform.pi.getData());
 		collection.lora.insert(await platform.lora.getData());
 		collection.web.insert(await platform.web.getData());
 
-		setTimeout(update, 10*1000);
+		
 	}
 	else {
 		collection.pi.insert(await platform.pi.getData());
 		collection.lora.insert(await platform.lora.getData());
 		collection.web.insert(await platform.web.err());
 	
-		setTimeout(update, 10*1000);
 	}
+	setTimeout(update, 10*1000);
 }
 
 update();

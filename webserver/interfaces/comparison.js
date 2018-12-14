@@ -32,7 +32,7 @@ const lorasRa = () => {
 		lora.find().where('time').gte(x).exec((err, data) => {
 			var tmp = 0;
 			var idx = 0;
-			//var pex = 0;
+			var pex = 0;
 			//console.log(data);
 			for(var i=0; i<data.length; i++) {
 			tmp += data[i].solar;
@@ -40,14 +40,23 @@ const lorasRa = () => {
 			//pex += data[i].sh;
 			}
 			tmp /= (data.length*1000);
-			//pex /= (data.length*1000);
 			idx /= data.length;
+			if(hh==9) pex =tmp*0.722048;
+			else if(hh==10) pex =tmp*0.740988;
+			else if(hh==11) pex =tmp*0.742274;
+			else if(hh==12) pex =tmp*0.74542;
+			else if(hh==13) pex =tmp*0.770166;
+			else if(hh==14) pex =tmp*0.797955;
+			else if(hh==15) pex =tmp*0.758472;
+			else if(hh==16) pex =tmp*0.752966;
+			else if(hh==17) pex =tmp*0.863955;
+			else pex = 0;
 			resolve({
 				
 				time: x,
 				solar: tmp.toFixed(3),
-				//sh: pex.toFixed(3),
-				energy: idx.toFixed(2),
+				sh: pex.toFixed(3),
+				energy: idx.toFixed(3),
 				
 		})
 		});
@@ -105,7 +114,7 @@ const webRa = () => {
 			resolve({
 					time: x,
 					solar: tmp.toFixed(3),
-					energy: idx.toFixed(2),
+					energy: idx.toFixed(3),
 				
 			})
 			
@@ -167,11 +176,11 @@ const PiRa = () => {
 			var pex = 0;
 			for(var i=0; i<data.length; i++) {
 			tmp += data[i].sv;
-			idx += data[i].energy;
+			idx += data[i].energy2;
 			pex += data[i].sh;
 			}
 			tmp /= (data.length*1000);
-			idx /= (data.length*1000);;
+			idx /= (data.length);
 			pex /= (data.length*1000);
 			resolve({
 				time: x,

@@ -20,6 +20,7 @@ function getData() {
 			var data = { 
 				idx: Buffer.from([ x[0], x[1] ]).readUInt16BE(0),
 				energy: Buffer.from([ x[31], x[32] ]).readUInt16BE(0),
+				energy2: (Buffer.from([ x[55], x[56] ]).readUInt16BE(0)*8*0.16*0.75) /1000,
 				sv: Buffer.from([ x[55], x[56] ]).readUInt16BE(0),
 				sh: Buffer.from([ x[57], x[58] ]).readUInt16BE(0)
 			};

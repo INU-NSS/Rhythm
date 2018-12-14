@@ -16,14 +16,16 @@
  *	5. 기관 키 변경, 시스템 유형 변경
  **/
 const config = require('../../config/config.js');
-const { key : { solarkey, cloudkey}}=config;
+const { key : {cloudkey}}=config;
 const request = require('request');
 var hh = new Date().getHours();
-if(hh >7 && hh <20){
+if(7<hh && hh <21){
+
 function update(isCurrent) {
 	var date = new Date().getToday();	// 날짜 포맷을 변경 (yyyyMMdd)
 	var time = new Date().getBaseTime();	// 발표일자 계산 및 포맷 변경 (hh00)
-	
+	//console.log(date);
+	//console.log(time);
 	//if(isCurrent == false) time = (time == 2) ? 23 : time - 3;
 	if(isCurrent == false) time = (time == 8) ? 5 : time - 3;
 	time = [(time>9 ? '':'0') + time, '00'].join('');
@@ -39,6 +41,7 @@ function update(isCurrent) {
 		request(query, (err, res, body) => {
 			if(err) reject(err); 
 			try{
+			//console.log(body);
 			var data = JSON.parse(body);
 			//console.log(data.response.body.items.item);
 			resolve(data.response.body.items.item);

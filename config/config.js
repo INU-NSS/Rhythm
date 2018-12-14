@@ -8,7 +8,8 @@ const config = {
         name: 'test',
     },
     mqtt: {
-        host: '192.168.0.7'
+        host: '192.168.0.7',
+        port: '1883'
     },
     socket: {
         port: 1553,
