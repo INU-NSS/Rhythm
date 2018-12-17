@@ -35,6 +35,30 @@
 
 ---
 
+##### 2018.12.14 UPDATE
+
+- Done
+    -LoRa데이터의 경사일사량 -> 수평일사량 시간별 비율(10일가 데이터 분석결과)로 변경 
+    
+- To Do
+    - 일사량 model 검증 후 추가(Zhang-Huang Solar Model, KKP, Zhang-Huang Solar Model(Fit South Korea)
+    - 버그 처리 
+
+---
+
+##### 2018.12.17 UPDATE
+
+- Done
+    -일사량 model 검증 후 추가(Zhang-Huang Solar Model, KKP, Zhang-Huang Solar Model(Fit South Korea)완료
+    -KKP와 기상청모바일 제외 
+    -Zhang-Huang Solar Model과 Zhang-Huang Solar Model(Fit South Korea) 추가로 기존의 충북대 값과 비교가능 
+    
+- To Do
+    - 전기 연구원 데이터 (도착하는 데로) PI쪽 코드 전부 수정 
+    - 버그 처리 
+
+---
+
 #### System Structure
 이 응용 프로그램은 크게 **웹서버**, **데이터서버** 및 **데이터베이스**로 구성되어있다. 데이터 서버는 다양한 플랫폼으로부터 실시간 일사량을 측정하거나 추정하여 데이터베이스에 저장하고, 웹서버는 이 정보를 그래프 또는 테이블로 제공한다.
 
