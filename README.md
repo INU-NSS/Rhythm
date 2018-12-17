@@ -56,7 +56,7 @@
 - To Do
     - 전기 연구원 데이터 (도착하는 데로) PI쪽 코드 전부 수정 
     - 버그 처리 
-
+    - 추후 날짜에 맞춰서 History Chart 데이터 수정  
 ---
 
 #### System Structure
