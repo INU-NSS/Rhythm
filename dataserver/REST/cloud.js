@@ -19,19 +19,16 @@ const config = require('../../config/config.js');
 const { key : {cloudkey}}=config;
 const request = require('request');
 var hh = new Date().getHours();
-if(7<hh && hh <21){
+if(7<hh && hh <20){
 
 function update(isCurrent) {
 	var date = new Date().getToday();	// 날짜 포맷을 변경 (yyyyMMdd)
 	var time = new Date().getBaseTime();	// 발표일자 계산 및 포맷 변경 (hh00)
-	//console.log(date);
-	//console.log(time);
-	//if(isCurrent == false) time = (time == 2) ? 23 : time - 3;
+
 	if(isCurrent == false) time = (time == 8) ? 5 : time - 3;
 	time = [(time>9 ? '':'0') + time, '00'].join('');
 	
 	var hh = new Date().getHours();
-	//console.log(hh);
 	if(hh >6 && hh <20) {
 	//const key = '%2BvfGC7aR%2BjJVlb5gBCfDySyyPzMg2yh9kGFMJZItbGJqwPe2H%2B%2BZCiItqIg8ENiOxA%2FYJPrdtfM52JrSXJzVKg%3D%3D';
 	var query = `http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData?ServiceKey=${cloudkey}&base_date=${date}&base_time=${time}&nx=60&ny=127&_type=json`;

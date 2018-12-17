@@ -6,15 +6,15 @@ var hh = new Date().getHours();
 async function update(io) {
 	
 	const solar = await Promise.all([
-		query.findDay(pi, 'sv'),
+		query.findDay(lora, 'solar'),
 		query.findDay(web, 'solar'),
-		query.findDay(lora, 'solar')
+		query.findDay(pi, 'sv')
 	]);
 
 	const energy = await Promise.all([
-		query.findDay(pi, 'energy'),
+		query.findDay(lora, 'energy'),
 		query.findDay(web, 'energy'),
-		query.findDay(lora, 'energy')
+		query.findDay(pi, 'energy2')
 	]);
 
 	io.emit('charts', { solar: solar, energy: energy });

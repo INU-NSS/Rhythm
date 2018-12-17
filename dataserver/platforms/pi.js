@@ -29,4 +29,4 @@ function getData() {
 	});
 }
 
-module.exports.getData = getData;
+module.exports.getData = getData; 

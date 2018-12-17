@@ -6,7 +6,7 @@ function createConfig(title){
 		data: {
 			labels: [],
 			datasets: [{
-				label: 'Pi',
+				label: 'LoRa',
 				backgroundColor: color(window.chartColors.red).alpha(0.3).rgbString(),
 				borderColor: window.chartColors.red,
 				fill: false,
@@ -18,7 +18,7 @@ function createConfig(title){
 				fill: false,
 				data: [],
 			}, {
-				label: 'LoRa',
+				label: 'Pi',
 				backgroundColor: color(window.chartColors.purple).alpha(0.3).rgbString(),
 				borderColor: window.chartColors.purple,
 				fill: false,

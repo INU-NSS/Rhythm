@@ -21,7 +21,7 @@ var platform = {
 };
 
 async function update() {
-	if( 8<=hh && hh<20) {
+	if( 8<=hh && hh<19) {
 		collection.pi.insert(await platform.pi.getData());
 		collection.lora.insert(await platform.lora.getData());
 		collection.web.insert(await platform.web.getData());

@@ -7,14 +7,12 @@
               <tr>
 				        <th>Time</th>
                 <th>경사일사량(KWh/m²)</th>
-                <!--<th>수평일사량(kwh/m²)</th>-->
                 <th>수평일사량(kwh/m²)</th>
 		            <th>발전량(kWh)</th>
               </tr>
               <tr>
                 <td id='lora_time'> - </td>
                 <td id='lora_solar'> - </td>
-                <!--<td id='lora_sh'>-->
                 <td id='lora_sh'>
 		            <td id='lora_energy'> - </td>
               </tr>
@@ -28,12 +26,16 @@
           <div class="w3-panel">
             <table id="table_nodes2" class="w3-table w3-border w3-bordered w3-white w3-small">
               <tr>
-							<th> Time </th>
+              <th> Time </th>
+              <th> 일사량 z-h모델 (KWh/m²)</th>
+              <th> 일사량 z-hf모델 (KWh/m²)</th>
 							<th> 일사량(KWh/m²) </th>
 							<th> 발전량(kWh) </th>
               </tr>
               <tr>
                 <td id='web_time'> - </td>
+                <td id='web_solarzh'> - </td>
+                <td id='web_solarfzh'> - </td>
                 <td id='web_solar'> - </td>
                 <td id='web_energy'> - </td>
               </tr>
@@ -54,9 +56,9 @@
                   </tr>
                 <tr>
                   <td id='pi_time'> - </td>
-                  <td id='pi_power'> - </td>
                   <td id='pi_sv'> - </td>
                   <td id='pi_sh'> - </td>
+                  <td id='pi_power'> - </td>
                 </tr>
               </table>
             </div>
@@ -74,7 +76,9 @@
 
 		web = data.web;
 		document.getElementById('web_time').innerHTML = new Date(web.time);
-		document.getElementById('web_solar').innerHTML = web.solar;
+    document.getElementById('web_solar').innerHTML = web.solar;
+    document.getElementById('web_solarzh').innerHTML = web.solarzh;
+    document.getElementById('web_solarfzh').innerHTML = web.solarfzh;
 		document.getElementById('web_energy').innerHTML = web.energy;
 
 		lora = data.lora;
