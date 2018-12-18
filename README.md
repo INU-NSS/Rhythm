@@ -49,9 +49,9 @@
 ##### 2018.12.17 UPDATE
 
 - Done
-    -일사량 model 검증 후 추가(Zhang-Huang Solar Model, KKP, Zhang-Huang Solar Model(Fit South Korea)완료
-    -KKP와 기상청모바일 제외 
-    -Zhang-Huang Solar Model과 Zhang-Huang Solar Model(Fit South Korea) 추가로 기존의 충북대 값과 비교가능 
+    - 일사량 model 검증 후 추가(Zhang-Huang Solar Model, KKP, Zhang-Huang Solar Model(Fit South Korea)완료
+    - KKP와 기상청모바일 제외 
+    - Zhang-Huang Solar Model과 Zhang-Huang Solar Model(Fit South Korea) 추가로 기존의 충북대 값과 비교가능 
     
 - To Do
     - 전기 연구원 데이터 (도착하는 데로) PI쪽 코드 전부 수정 
