@@ -19,8 +19,8 @@ function createConfig(title){
 				data: [],
 			}, {
 				label: 'Pi',
-				backgroundColor: color(window.chartColors.purple).alpha(0.3).rgbString(),
-				borderColor: window.chartColors.purple,
+				backgroundColor: color(window.chartColors.lightgreen).alpha(0.3).rgbString(),
+				borderColor: window.chartColors.lightgreen,
 				fill: false,
 				data: [],
 			}],
@@ -45,7 +45,7 @@ window.onload = function() {
 	window.figure2 = new Chart(ctx, createConfig('energy'));
 
 	window.figure1.options.title.display = true;
-	window.figure1.options.title.text = 'Solar irradiation[kWh/m2] (h=10min)';
+	window.figure1.options.title.text = 'Solar irradiation[Wh/m2] (h=10min)';
 	window.figure2.options.title.display = true;
-	window.figure2.options.title.text = 'Power Generation[kWh] (h=10min)';
+	window.figure2.options.title.text = 'Power Generation[KWh] (h=10min)';
 };
